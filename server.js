@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 // Set up all variables in the .env file
 require('dotenv').config();
@@ -19,10 +19,11 @@ const app = express();
 // ========= Middlewares =================
 app.use(morgan('dev')); // logger
 app.use(express.json()); // body parser
-require('./config/passport')
+require('./config/passport');
 
 // ========= Routes ======================
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/projects', require('./routes/projectRoutes'));
 
 // Use this route to setup the API documentation
 app.get('/', (req, res) => {
