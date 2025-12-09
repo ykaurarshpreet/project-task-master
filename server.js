@@ -21,12 +21,14 @@ const app = express();
 app.use(morgan('dev')); // logger
 app.use(express.json()); // body parser
 app.use(cors({origin: process.env.FRONTEND_URL}));
+
 require('./config/passport');
 
 
 // ========= Routes ======================
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/projects', require('./routes/projectRoutes'));
+app.use('/api/projects/:projectId/tasks', require('./routes/taskRoutes'))
 
 // Use this route to setup the API documentation
 app.get('/', (req, res) => {
